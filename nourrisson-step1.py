@@ -52,3 +52,116 @@ high_skulls_girls = [35.8, 38.5, 40.2, 41.6, 42.7, 43.6, 44.3, 45, 45.6, 46, 46.
 48.1, 48.3, 48.5, 48.7, 48.9, 49, 49.2, 49.3, 49.5, 49.6, 49.8, 49.9, 50, 50.1, 50.2, 50.4, 50.5, 50.6, 50.7, 50.7,
 50.8, 50.9, 51, 51.1, 51.2, 51.2, 51.3, 51.4, 51.4, 51.5, 51.6, 51.6, 51.7, 51.7, 51.8, 51.8, 51.9, 51.9, 52, 52,
 52.1, 52.1, 52.2, 52.2, 52.3]
+
+#Début du programme de Guillaume
+
+##Saisie des invites
+print("Bienvenue dans ce programme de vérification des constantes de votre nourrisson !")
+#Demande genre du nourrisson
+genre_nourrisson = input("Entrez le genre de votre nourrisson ('g' pour garçon, 'f' pour fille) : ").lower()
+#Représentation de la demande si réponse autre que g ou f
+while genre_nourrisson not in ['g','f'] :
+    print("Merci de renseigner seulement 'g' ou 'f'")
+    genre_nourrisson = input("Entrez à nouveau le genre de votre nourrisson ('g' pour garçon, 'f' pour fille) : ")
+
+#Demande âge du nourrisson
+age_nourrisson = input("Veuillez entrer l'âge de votre nourrisson (entre 0 et 60 mois) : ")
+
+#test du format jusqu'à obtenir un entier
+while True :
+    try :
+        age_nourrisson = int(age_nourrisson)
+        break
+    except ValueError :
+        age_nourrisson = input("Veuillez entrer à nouveau l'âge de votre nourrisson (entre 0 et 60 mois) : ")
+
+#L'age doit être entre les bornes 0 et 60 inclus
+while int(age_nourrisson) <0 or int(age_nourrisson) >60 :
+    print("Merci de saisir un nombre entier entre 0 et 60")
+    age_nourrisson = input("Veuillez entrer à nouveau l'âge de votre nourrisson (entre 0 et 60 mois) : ")
+
+
+poids_nourrisson = input("Veuillez entrer le poids de votre nourrisson en kg : ")
+#test du format pour ne prendre que des chiffres pour le poids
+while True :
+    try :
+        poids_nourrisson = float(poids_nourrisson)
+        break
+    except ValueError :
+        poids_nourrisson = input("Veuillez entrer à nouveau le poids de votre nourrisson en kg : ")
+
+
+taille_nourrisson = input("Veuillez entrer la taille de votre nourrisson en cm : ")
+#test du format pour ne prendre que des chiffres pour la taille
+while True :
+    try :
+        taille_nourrisson = float(taille_nourrisson)
+        break
+    except ValueError :
+        taille_nourrisson = input("Veuillez entrer à nouveau la taille de votre nourrisson en cm : ")
+
+
+perimetre_cranien_nourrisson = input("Veuillez entrer le périmètre cranien de votre nourrisson en cm : ")
+#test du format pour ne prendre que des chiffres pour le périmètre cranien
+while True :
+    try :
+        perimetre_cranien_nourrisson = float(perimetre_cranien_nourrisson)
+        break
+    except ValueError :
+        perimetre_cranien_nourrisson = input("Veuillez entrer à nouveau le périmètre cranien de votre nourrisson en cm : ")
+
+
+##Récupération des normes de poids en fonction de l'age
+
+#ajout d'un if pour distinguer les filles et les garçons
+
+#test fille
+if genre_nourrisson =="f" :
+    #Affichage des normes de poids filles et test
+    print (f"\nLa norme de poids pour une fille de {age_nourrisson} mois est située entre {low_weights_girls[int(age_nourrisson)]} et {high_weights_girls[int(age_nourrisson)]} kg")
+    if float(poids_nourrisson) >= low_weights_girls[int(age_nourrisson)] and float(poids_nourrisson) <= high_weights_girls[int(age_nourrisson)]:
+        print(f"Le poids de votre nourrisson ({poids_nourrisson} kg) est dans la norme !\n")
+    else :
+        print(f"Le poids de votre nourrisson ({poids_nourrisson} kg) n'est dans la norme !\n")
+    
+    #Affichage des normes de taille filles et test
+    print (f"La norme de taille pour une fille de {age_nourrisson} mois est située entre {low_heights_girls[int(age_nourrisson)]} et {high_heights_girls[int(age_nourrisson)]} cm")
+    if float(taille_nourrisson) >= low_heights_girls[int(age_nourrisson)] and float(taille_nourrisson) <= high_heights_girls[int(age_nourrisson)]:
+        print(f"La taille de votre nourrisson ({taille_nourrisson} cm) est dans la norme !\n")
+    else :
+        print(f"La taille de votre nourrisson ({taille_nourrisson} cm) n'est pas dans la norme !\n")
+
+    #Affichage des normes de périmètre cranien fille et test
+    print (f"La norme de périmètre cranien pour une fille de {age_nourrisson} mois est située entre {low_skulls_girls[int(age_nourrisson)]} et {high_skulls_girls[int(age_nourrisson)]} cm")
+    if float(perimetre_cranien_nourrisson) >= low_skulls_girls[int(age_nourrisson)] and float(perimetre_cranien_nourrisson) <= high_skulls_girls[int(age_nourrisson)]:
+        print(f"Le périmètre cranien de votre nourrisson ({perimetre_cranien_nourrisson} cm) est dans la norme !\n")
+    else :
+        print(f"Le périmètre cranien de votre nourrisson ({perimetre_cranien_nourrisson} cm) n'est pas dans la norme !\n")
+
+
+#test garçon
+elif genre_nourrisson =="g" :
+    #Affichage des normes de poids garçons et test
+    print (f"\nLa norme de poids pour un garçon de {age_nourrisson} mois est située entre {low_weights_boys[int(age_nourrisson)]} et {high_weights_boys[int(age_nourrisson)]} kg")
+    if float((poids_nourrisson)) >= (low_weights_boys[int(age_nourrisson)]) and (float(poids_nourrisson) <= high_weights_boys[int(age_nourrisson)]):
+        print(f"Le poids de votre nourrisson ({poids_nourrisson} kg) est dans la norme !\n")
+    else :
+        print(f"Le poids de votre nourrisson ({poids_nourrisson} kg) n'est dans la norme !\n")
+
+    #Affichage des normes de taille garçons et test
+    print (f"La norme de taille pour un garçon de {age_nourrisson} mois est située entre {low_heights_boys[int(age_nourrisson)]} et {high_heights_boys[int(age_nourrisson)]} cm")
+    if float(taille_nourrisson) >= low_heights_boys[int(age_nourrisson)] and float(taille_nourrisson) <= high_heights_boys[int(age_nourrisson)]:
+        print(f"La taille de votre nourrisson ({taille_nourrisson} cm) est dans la norme !\n")
+    else :
+        print(f"La taille de votre nourrisson ({taille_nourrisson} cm) n'est pas dans la norme !\n")
+
+    #Affichage des normes de périmètre cranien garçons et test
+    print (f"La norme de périmètre cranien pour un garçon de {age_nourrisson} mois est située entre {low_skulls_boys[int(age_nourrisson)]} et {high_skulls_boys[int(age_nourrisson)]} cm")
+    if float(perimetre_cranien_nourrisson) >= low_skulls_boys[int(age_nourrisson)] and float(perimetre_cranien_nourrisson) <= high_skulls_boys[int(age_nourrisson)]:
+        print(f"Le périmètre cranien de votre nourrisson ({perimetre_cranien_nourrisson} cm) est dans la norme !\n")
+    else :
+        print(f"Le périmètre cranien de votre nourrisson ({perimetre_cranien_nourrisson} cm) n'est pas dans la norme !\n")
+
+
+
+    
