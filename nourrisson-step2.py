@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import csv
 
 plt.figure(figsize=(20,20))
-plt.suptitle("Données médicales du nourrisson")
+plt.suptitle("Données médicales du nourrisson pour un garçon")
 
 #### Graphe Poids ####
 
@@ -17,9 +17,8 @@ with open ('./mesures.csv','r') as csvfile:
     donnees = csv.reader(csvfile,delimiter=';')
     
     entete = True
-    
     for row in donnees :
-        if entete:
+        if entete: #Astuce pour éviter de prendre les données de la première ligne qui contient les intitulés de colonne
             entete = False
             continue
         
@@ -27,6 +26,7 @@ with open ('./mesures.csv','r') as csvfile:
         y.append (float(row[1]))
 
 #Courbes poids norme garçon
+#Création des variables à vide pour es 5 courbes (abscisses et ordonnées)
 x1=[]
 y1=[]
 x2=[]
@@ -41,9 +41,8 @@ with open ('./poids-age-garcon-0-60-light.csv','r') as csvfile:
     donnees = csv.reader(csvfile,delimiter=';')
     
     entete = True
-    
-    for row in donnees :
-        if entete:
+    for row in donnees : # Alimentation des 5 courbes de norme avec la même boucle
+        if entete: #On ignore encore la premère ligne
             entete = False
             continue
         x1.append (int(row[0]))
@@ -58,7 +57,7 @@ with open ('./poids-age-garcon-0-60-light.csv','r') as csvfile:
         y5.append (float(row[5]))
 
 
-plt.subplot (1,3,1)
+plt.subplot (1,3,1) #Découpage de la figure en 3 graphes qui occupent toute la hauteur. Sélection ici du premier graphe avec les courbes juste en dessous
 
 plt.scatter(x,y,label="Données du nourrisson",color="green")# Affiche du nuage (on peut le mettre à la fin aussi avec les autres courbes)
 plt.plot(x1,y1,label="5% poids")
@@ -83,7 +82,6 @@ with open ('./mesures.csv','r') as csvfile:
     donnees = csv.reader(csvfile,delimiter=';')
     
     entete = True
-    
     for row in donnees :
         if entete:
             entete = False
@@ -109,7 +107,6 @@ with open ('./taille-age-garcon-0-60-light.csv','r') as csvfile:
     donnees = csv.reader(csvfile,delimiter=';')
     
     entete = True
-    
     for row in donnees :
         if entete:
             entete = False
@@ -150,7 +147,6 @@ with open ('./mesures.csv','r') as csvfile:
     donnees = csv.reader(csvfile,delimiter=';')
     
     entete = True
-    
     for row in donnees :
         if entete:
             entete = False
@@ -176,7 +172,6 @@ with open ('./perim-cra-age-garcon-0-60-light.csv','r') as csvfile:
     donnees = csv.reader(csvfile,delimiter=';')
     
     entete = True
-    
     for row in donnees :
         if entete:
             entete = False
